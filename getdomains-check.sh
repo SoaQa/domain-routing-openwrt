@@ -608,7 +608,7 @@ if opkg list-installed | grep -q dnscrypt-proxy2; then
     output_21
   fi
 
-  DNSMASQ_STRING=$(uci show dhcp.@dnsmasq[0] | grep -c "127.0.0.53#53\|noresolv='1'")
+  DNSMASQ_STRING=$(uci show dhcp.@dnsmasq[0] | grep -c "127.0.0.53#53\|127.0.0.53#5453\|noresolv='1'")
   if [ $DNSMASQ_STRING -eq 2 ]; then
     checkpoint_true "$DNSMASQ_CONFIG_FOR_DNSCRYPT_OK"
   else
