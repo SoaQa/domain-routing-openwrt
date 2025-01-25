@@ -883,7 +883,7 @@ install_awg_packages() {
 
     TARGET=$(ubus call system board | jsonfilter -e '@.release.target' | cut -d '/' -f 1)
     SUBTARGET=$(ubus call system board | jsonfilter -e '@.release.target' | cut -d '/' -f 2)
-    VERSION=$(ubus call system board | jsonfilter -e '@.release.version')
+    VERSION=24 # Хардкод для работы со снапшотом
     PKGPOSTFIX="_v${VERSION}_${PKGARCH}_${TARGET}_${SUBTARGET}.ipk"
     BASE_URL="https://github.com/Slava-Shchipunov/awg-openwrt/releases/download/"
 
@@ -982,6 +982,8 @@ if [ "$VERSION_ID" -ne 23 ] && [ "$VERSION_ID" -ne 24 ]; then
 fi
 
 printf "\033[31;1mAll actions performed here cannot be rolled back automatically.\033[0m\n"
+
+printf "\033[31;1mFor OpenWRT 24 ONLY!\033[0m\n"
 
 check_repo
 
