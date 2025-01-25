@@ -327,14 +327,12 @@ dnsmasqfull() {
 }
 
 dnsmasqconfdir() {
-    if [ $VERSION_ID -ge 24 ]; then
-        if uci -q get dhcp.@dnsmasq[0].confdir | grep -q /tmp/dnsmasq.d; then
-            printf "\033[32;1mconfdir already set\033[0m\n"
-        else
-            printf "\033[32;1mSetting confdir\033[0m\n"
-            uci set dhcp.@dnsmasq[0].confdir='/tmp/dnsmasq.d'
-            uci commit dhcp
-        fi
+    if uci -q get dhcp.@dnsmasq[0].confdir | grep -q /tmp/dnsmasq.d; then
+        printf "\033[32;1mconfdir already set\033[0m\n"
+    else
+        printf "\033[32;1mSetting confdir\033[0m\n"
+        uci set dhcp.@dnsmasq[0].confdir='/tmp/dnsmasq.d'
+        uci commit dhcp
     fi
 }
 
